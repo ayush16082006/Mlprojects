@@ -5,37 +5,8 @@ import pandas as pd
 from src.exception import CustomException
 from src.util import load_object
 
-def predict(self, features):
-    try:
-        model_path = os.path.join("artifacts", "model.pkl")
-        preprocessor_path = os.path.join(
-            "artifacts",
-            "preprocessor.pkl"
-        )
 
-        print("Loading model...")
-        model = load_object(file_path=model_path)
-
-        print("Loading preprocessor...")
-        preprocessor = load_object(file_path=preprocessor_path)
-
-        print("Transforming data...")
-        data_scaled = preprocessor.transform(features)
-
-        print("Data transformed successfully")
-        print(data_scaled)
-
-        print("Making prediction...")
-        preds = model.predict(data_scaled)
-
-        print("Prediction:", preds)
-
-        return preds
-
-    except Exception as e:
-        print("PREDICTION ERROR:", repr(e))
-        raise CustomException(e, sys)
-'''class PredictPipeline:
+class PredictPipeline:
 
     def __init__(self):
         pass
@@ -49,20 +20,29 @@ def predict(self, features):
                 "preprocessor.pkl"
             )
 
+            print("Loading model...")
             model = load_object(file_path=model_path)
 
+            print("Loading preprocessor...")
             preprocessor = load_object(
                 file_path=preprocessor_path
             )
 
+            print("Transforming data...")
             data_scaled = preprocessor.transform(features)
 
+            print("Data transformed successfully")
+
+            print("Making prediction...")
             preds = model.predict(data_scaled)
+
+            print("Prediction:", preds)
 
             return preds
 
         except Exception as e:
-            raise CustomException(e, sys)'''
+            print("PREDICTION ERROR:", repr(e))
+            raise CustomException(e, sys)
 
 
 class CustomData:
