@@ -20,28 +20,19 @@ class PredictPipeline:
                 "preprocessor.pkl"
             )
 
-            print("Loading model...")
             model = load_object(file_path=model_path)
 
-            print("Loading preprocessor...")
             preprocessor = load_object(
                 file_path=preprocessor_path
             )
 
-            print("Transforming data...")
             data_scaled = preprocessor.transform(features)
 
-            print("Data transformed successfully")
-
-            print("Making prediction...")
             preds = model.predict(data_scaled)
-
-            print("Prediction:", preds)
 
             return preds
 
         except Exception as e:
-            print("PREDICTION ERROR:", repr(e))
             raise CustomException(e, sys)
 
 
